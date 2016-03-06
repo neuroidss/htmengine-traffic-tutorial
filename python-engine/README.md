@@ -14,20 +14,22 @@ Go ahead and start the MySQL server and RabbitMQ, but not Supervisor.
 
 ## 2. Install HTM Engine and NTA Utils
 
-Clone https://github.com/numenta/numenta-apps locally. Then you can install
-`htmengine` in development mode:
+Clone https://github.com/numenta/numenta-apps locally. 
+
+You'll need to install `nta.utils`, which is a dependency of `htmengine`:
+
+```
+cd numenta-apps/nta.utils
+python setup.py develop --user
+```
+
+Then you can install `htmengine` in development mode:
 
 ```
 cd numenta-apps/htmengine
 python setup.py develop --user
 ```
 
-You'll also need to install `nta.utils`, which is a dependency of `htmengine`:
-
-```
-cd numenta-apps/nta.utils
-python setup.py develop --user
-```
 
 ## 3. Install Required Python Modules
 
@@ -63,7 +65,7 @@ python python-engine/repository/migrate.py
 ```
 ## 7. Update Two Config Files
 
-In `python-engine/conf/supervisor.conf`, there are two places where asbolute paths need to be updated. Look for the string `/Users/mtaylor/nta/` and replace with your local path to your `htmeengine-traffic-tutorial` checkout.
+In `python-engine/conf/supervisord.conf`, there are two places where asbolute paths need to be updated. Look for the string `/Users/mtaylor/nta/` and replace with your local path to your `htmeengine-traffic-tutorial` checkout.
 
 In `python-engine/conf/model-checkpoint.conf`, update the `storage.root` value to point to a directory within your own file system. If this folder does not exist, it will be created.
 
